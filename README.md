@@ -65,5 +65,5 @@ ruff check moeforge tests
 mypy moeforge
 ```
 
-GitHub Actions runs these checks on pushes and pull requests. Historical engineering
-handoffs under `status/` describe development history, not requirements for your fork.
+GitHub Actions runs these checks on pushes and pull requests. Local agent instructions
+and handoff files are excluded from the template.
