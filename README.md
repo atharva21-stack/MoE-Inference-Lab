@@ -1,4 +1,4 @@
-# MoEForge
+# MoE-Inference-Lab
 
 A Python starter template for topology-aware Mixture-of-Experts inference analysis.
 Bring your own model, serving backend, traffic source, hardware, and measurements.
@@ -54,8 +54,9 @@ produces an unavailable communication prediction, not an assumed zero cost.
 4. Supply your own configuration and workload outside the reusable analysis modules.
 5. Keep measurements separate from predictions and synthetic test fixtures.
 
-The package name remains `moeforge`; rename its directory, imports, and package-discovery
-pattern together if you change it. Choose a license before redistributing your own work.
+The project and distribution name is `MoE-Inference-Lab`. Its Python import namespace
+is `moeforge`, preserving compatibility with the existing interfaces and examples.
+Choose a license before redistributing your own work.
 
 ## Development
 

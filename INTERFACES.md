@@ -1,4 +1,4 @@
-# MoEForge — Shared Interfaces
+# MoE-Inference-Lab — Shared Interfaces
 
 > This file defines the shared contracts between the Codex and Claude implementation lanes.
 > Both agents must treat these interfaces as stable unless a change is explicitly documented here.
@@ -7,7 +7,7 @@
 
 # 1. Purpose
 
-MoEForge is being developed in parallel by two implementation lanes:
+MoE-Inference-Lab is being developed in parallel by two implementation lanes:
 
 - **Codex lane:** serving, benchmarking, telemetry, storage, CLI, kernels
 - **Claude lane:** topology, placement optimization, SLO analysis, Pareto analysis, dashboard/API
@@ -835,7 +835,7 @@ Milestone 2 replaces synthetic `ExpertStats` with real router telemetry.
 
 # 28. One Principle Above Everything Else
 
-MoEForge must keep these concepts separate:
+MoE-Inference-Lab must keep these concepts separate:
 
 ```text
 MEASURED

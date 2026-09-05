@@ -1,5 +1,5 @@
 [project]
-name = "moeforge"
+name = "MoE-Inference-Lab"
 version = "0.1.0"
 description = "A generic starter for topology-aware MoE inference analysis"
 requires-python = ">=3.12"
