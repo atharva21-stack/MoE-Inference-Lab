@@ -8,16 +8,22 @@
 - Linear, round-robin and deterministic greedy placements, fixed assignments,
   memory/count constraints, comparison summaries and explicit communication costs.
 - Conservative SLO evaluation/filtering, Pareto frontier and typed recommendations.
-- Package installation verified with Python 3.12. 35 tests pass; Ruff and standard
+- Package installation verified with Python 3.12. 42 tests pass; Ruff and standard
   mypy pass. No Codex-owned modules were implemented or modified.
+- Added `moeforge/api/` as the small, stable public surface described in
+  CLAUDE_MOEFORGE.md section 8 (`parse_topology`, `calculate_expert_load`,
+  `optimize_placement`, `pareto_frontier`). It re-exports the existing tested
+  implementations only; no new logic.
 
 ## Files Changed
 
 - `moeforge/topology/{__init__,parser,cost_model}.py`
 - `moeforge/optimizer/{__init__,load_model,placement,communication_model,slo,pareto,recommendation}.py`
 - `moeforge/optimizer/README.md`
+- `moeforge/api/{__init__,api}.py` (new: stable public surface, re-exports only)
 - `moeforge/shared/__init__.py`, `moeforge/shared/serialization.py`, `INTERFACES.md`
-- `tests/conftest.py`, `tests/topology/`, `tests/optimizer/`, `tests/shared/test_serialization.py`
+- `tests/conftest.py`, `tests/topology/`, `tests/optimizer/`, `tests/shared/test_serialization.py`,
+  `tests/api/test_api.py` (new)
 - `.gitignore`, initial package scaffold, `status/CLAUDE.md`
 - Shared models, initial contract tests and project metadata were concurrently supplied;
   preserved those versions and integrated against them (shared import formatting only).
@@ -25,7 +31,9 @@
 ## How It Works
 
 - Call `parse_topology`, then `calculate_expert_load` and `optimize_placement` using
-  shared dataclasses. Public optimizer functions are exported by `moeforge.optimizer`.
+  shared dataclasses. Public optimizer functions are exported by `moeforge.optimizer`,
+  and also via `moeforge.api` for callers (dashboard, Codex lane) that want the
+  minimal stable surface instead of reaching into optimizer/topology internals.
 - Greedy scores projected destination GPU load plus weighted incremental communication
   cost. It reserves fixed assignments before placing remaining experts by descending load.
 - Supply optional `source_tokens[(source_gpu, expert_id)]` for communication predictions.
@@ -68,6 +76,8 @@ Validated with Python 3.12, pytest 9.1.1, Ruff 0.16.6 and mypy 2.3.1.
   `SLOEvaluation`; no shared dataclass fields changed.
 - Additive local `PlacementComparison` and `Recommendation` dataclasses; optional source
   traffic keyword and serialization semantics documented in `INTERFACES.md`.
+- `moeforge.api`: `parse_topology`, `calculate_expert_load`, `optimize_placement`,
+  `pareto_frontier` — pure re-exports, not new interfaces.
 
 ## Synthetic Data Used
 
